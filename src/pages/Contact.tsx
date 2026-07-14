@@ -18,10 +18,10 @@ const labelStyle = {
 export default function Contact() {
   return (
     <section
-      className="min-h-screen bg-black px-4 pb-24 pt-28 lg:px-8 lg:pb-40 lg:pt-40"
+      className="flex min-h-screen flex-col items-center bg-black px-4 pb-28 pt-28 text-center lg:px-8 lg:pb-40 lg:pt-40"
       style={{ color: "#fff", ["--accent" as string]: ACCENT }}
     >
-      <div className="mx-auto max-w-[900px]">
+      <div className="w-full max-w-[640px]">
         <div
           className="mb-6 font-medium uppercase"
           style={{ fontSize: 11, letterSpacing: "0.22em", color: "rgba(255,255,255,0.45)" }}
@@ -37,52 +37,54 @@ export default function Contact() {
         </h1>
 
         {/* C/S CENTER */}
-        <div
-          className="mt-12 grid gap-3 border-t pt-8 lg:mt-16 lg:grid-cols-[220px_1fr]"
-          style={{ borderColor: "rgba(255,255,255,0.15)" }}
-        >
+        <div className="mt-16">
           <div className="font-medium uppercase" style={labelStyle}>
             SKIPP C/S Center
           </div>
-          <div>
-            <div className="font-bold uppercase text-[20px] lg:text-[24px]" style={{ letterSpacing: "-0.02em" }}>
-              kakao. 시캡
-            </div>
-            <div className="mt-4" style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.55)" }}>
-              MON – FRI 10:00–18:00 (LUNCH 12:30–14:00)
-              <br />
-              SAT, SUN, HOLIDAY OFF
-            </div>
+          <div
+            className="mt-4 font-bold uppercase text-[22px] lg:text-[26px]"
+            style={{ letterSpacing: "-0.02em" }}
+          >
+            kakao. 시캡
+          </div>
+          <div className="mt-4" style={{ fontSize: 14, lineHeight: 1.8, color: "rgba(255,255,255,0.55)" }}>
+            MON – FRI 10:00–18:00 (LUNCH 12:30–14:00)
+            <br />
+            SAT, SUN, HOLIDAY OFF
           </div>
         </div>
 
+        {/* divider */}
+        <div
+          className="mx-auto mt-14 h-px w-16"
+          style={{ background: "rgba(255,255,255,0.2)" }}
+        />
+
         {/* info rows */}
-        {ROWS.map((r) => (
-          <div
-            key={r.label}
-            className="grid gap-2 border-t py-7 lg:grid-cols-[220px_1fr]"
-            style={{ borderColor: "rgba(255,255,255,0.15)" }}
-          >
-            <div className="font-medium uppercase" style={labelStyle}>
-              {r.label}
-            </div>
-            {r.href ? (
-              <a
-                href={r.href}
-                target={r.href.startsWith("http") ? "_blank" : undefined}
-                rel={r.href.startsWith("http") ? "noreferrer" : undefined}
-                className="font-medium transition-colors hover:text-[var(--accent)] text-[18px] lg:text-[20px]"
-                style={{ color: "rgba(255,255,255,0.9)", textDecoration: "none", width: "fit-content" }}
-              >
-                {r.value}
-              </a>
-            ) : (
-              <div className="font-medium text-[18px] lg:text-[20px]" style={{ color: "rgba(255,255,255,0.9)" }}>
-                {r.value}
+        <div className="mt-14 flex flex-col gap-11">
+          {ROWS.map((r) => (
+            <div key={r.label}>
+              <div className="font-medium uppercase" style={labelStyle}>
+                {r.label}
               </div>
-            )}
-          </div>
-        ))}
+              {r.href ? (
+                <a
+                  href={r.href}
+                  target={r.href.startsWith("http") ? "_blank" : undefined}
+                  rel={r.href.startsWith("http") ? "noreferrer" : undefined}
+                  className="mt-2 inline-block font-medium transition-colors hover:text-[var(--accent)] text-[19px] lg:text-[21px]"
+                  style={{ color: "rgba(255,255,255,0.9)", textDecoration: "none" }}
+                >
+                  {r.value}
+                </a>
+              ) : (
+                <div className="mt-2 font-medium text-[19px] lg:text-[21px]" style={{ color: "rgba(255,255,255,0.9)" }}>
+                  {r.value}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
