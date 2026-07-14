@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import {
   HERO_VIDEO,
   GALLERY,
   SYMBOLS,
   EASE,
-  STORE_SHOP,
   buildLayout,
   colsForWidth,
 } from "../lib/data";
@@ -288,8 +288,8 @@ export default function Home() {
           transform: "scale(0)",
         }}
       >
-        <a
-          href={STORE_SHOP}
+        <Link
+          to="/shop/product"
           className="pointer-events-auto flex h-full w-full cursor-pointer items-center justify-center font-medium leading-none text-[72px] lg:text-[110px]"
           style={{
             letterSpacing: "-0.04em",
@@ -299,7 +299,7 @@ export default function Home() {
           }}
         >
           view
-        </a>
+        </Link>
       </div>
 
       {/* ---- Footer ---- */}
