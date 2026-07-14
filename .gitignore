@@ -1,0 +1,25 @@
+# dependencies
+node_modules
+
+# build output
+dist
+*.tsbuildinfo
+
+# local tooling
+.claude
+
+# logs
+*.log
+npm-debug.log*
+
+# editor / os
+.DS_Store
+.vscode
+.idea
+
+# vercel
+.vercel
+
+# env
+.env
+.env.*
