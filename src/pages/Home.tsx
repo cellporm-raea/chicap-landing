@@ -298,7 +298,7 @@ export default function Home() {
             textDecoration: "none",
           }}
         >
-          view
+          shop
         </Link>
       </div>
 
