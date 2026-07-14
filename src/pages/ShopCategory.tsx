@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { STORE_SHOP } from "../lib/data";
 
 type Props = { name: string; tag: string; image: string };
 
@@ -60,9 +59,9 @@ export default function ShopCategory({ name }: Props) {
       {/* product grid — desktop 4 / mobile 2 */}
       <div className="grid grid-cols-2 gap-x-3 gap-y-9 lg:grid-cols-4 lg:gap-x-5 lg:gap-y-14">
         {shown.map((p) => (
-          <a
+          <Link
             key={p.id}
-            href={STORE_SHOP}
+            to="/shop/product"
             className="group block"
             style={{ textDecoration: "none", color: "inherit" }}
           >
@@ -99,7 +98,7 @@ export default function ShopCategory({ name }: Props) {
             <p className="mt-1.5" style={{ fontSize: 12, lineHeight: 1.5, color: "rgba(0,0,0,0.45)" }}>
               {p.desc}
             </p>
-          </a>
+          </Link>
         ))}
       </div>
 
