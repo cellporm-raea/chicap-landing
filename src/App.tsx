@@ -20,6 +20,14 @@ const GALLERY = [
   "/gallery/g10.jpg",
 ];
 
+type Category = { no: string; name: string; tag: string; image: string; href: string };
+const SHOP_CATEGORIES: Category[] = [
+  { no: "01", name: "Ball Cap", tag: "The signature silhouette.", image: "/gallery/g02.jpg", href: SHOP_URL },
+  { no: "02", name: "Beanie", tag: "Knit, for the cold months.", image: "/gallery/g03.jpg", href: SHOP_URL },
+  { no: "03", name: "Leopard", tag: "The statement line.", image: "/gallery/g06.jpg", href: SHOP_URL },
+  { no: "04", name: "Archive", tag: "Everything, in one place.", image: "/gallery/g08.jpg", href: SHOP_URL },
+];
+
 const SYMBOLS = ["C", "$", "®", "%", "/"];
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
@@ -56,6 +64,8 @@ export default function App() {
   const [videosReady, setVideosReady] = useState(false);
   const [infoShown, setInfoShown] = useState(false);
   const [spacerH, setSpacerH] = useState("500vh");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [openSection, setOpenSection] = useState<string | null>(null);
 
   // refs
   const spacerRef = useRef<HTMLDivElement>(null);
@@ -208,6 +218,7 @@ export default function App() {
   }, [cols]);
 
   return (
+    <>
     <div
       id="scroll-spacer"
       ref={spacerRef}
@@ -298,23 +309,35 @@ export default function App() {
         >
           About
         </span>
-        <a
-          href={SHOP_URL}
-          className="pointer-events-auto flex cursor-pointer items-center gap-5 lg:gap-[50px]"
-          style={{ color: "inherit", textDecoration: "none" }}
-        >
-          <svg
-            width="30"
-            height="30"
-            viewBox="0 0 40 40"
-            fill="none"
-            className="h-6 w-6 lg:h-[30px] lg:w-[30px]"
+        <div className="flex items-center gap-5 lg:gap-[50px]">
+          <button
+            type="button"
+            aria-label="Open menu"
+            onClick={() => {
+              setOpenSection(null);
+              setMenuOpen(true);
+            }}
+            className="pointer-events-auto cursor-pointer"
           >
-            <path d="M0 14H40" stroke="#fff" strokeWidth="2.5" />
-            <path d="M0 26H40" stroke="#fff" strokeWidth="2.5" />
-          </svg>
-          <span className="font-medium text-[13px] lg:text-[15px]">[ CART ]</span>
-        </a>
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 40 40"
+              fill="none"
+              className="h-6 w-6 lg:h-[30px] lg:w-[30px]"
+            >
+              <path d="M0 14H40" stroke="#fff" strokeWidth="2.5" />
+              <path d="M0 26H40" stroke="#fff" strokeWidth="2.5" />
+            </svg>
+          </button>
+          <a
+            href={SHOP_URL}
+            className="pointer-events-auto cursor-pointer font-medium text-[13px] lg:text-[15px]"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            [ CART ]
+          </a>
+        </div>
       </motion.div>
 
       {/* ---- Product info (bottom) ---- */}
@@ -457,5 +480,261 @@ export default function App() {
         </div>
       </div>
     </div>
+
+    {/* ================= SHOP CATEGORIES ================= */}
+    <section
+      id="shop"
+      className="relative z-40 bg-black px-4 pb-20 pt-24 lg:px-8 lg:pb-28 lg:pt-32"
+      style={{ color: "#fff" }}
+    >
+      {/* header */}
+      <div className="mb-12 lg:mb-20">
+        <div
+          className="mb-4 font-medium uppercase"
+          style={{ fontSize: 11, letterSpacing: "0.22em", color: "rgba(255,255,255,0.45)" }}
+        >
+          Select your line
+        </div>
+        <h2
+          className="font-bold uppercase leading-[0.88] text-[15vw] lg:text-[7.5vw]"
+          style={{ letterSpacing: "-0.045em" }}
+        >
+          Shop the
+          <br />
+          Archive
+        </h2>
+      </div>
+
+      {/* category grid */}
+      <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-4 lg:gap-4">
+        {SHOP_CATEGORIES.map((cat) => (
+          <a
+            key={cat.no}
+            href={cat.href}
+            className="group relative block overflow-hidden bg-neutral-900"
+            style={{ aspectRatio: "3 / 4", textDecoration: "none" }}
+          >
+            <img
+              src={cat.image}
+              alt={cat.name}
+              className="h-full w-full object-cover opacity-75 transition-all duration-700 ease-out group-hover:scale-[1.06] group-hover:opacity-100"
+              loading="lazy"
+            />
+            {/* dark gradient for legibility */}
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 32%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.82) 100%)",
+              }}
+            />
+            {/* labels */}
+            <div className="absolute inset-0 flex flex-col justify-between p-3.5 lg:p-5">
+              <span
+                className="font-medium"
+                style={{ fontSize: 12, letterSpacing: "0.1em", color: "#C1445A" }}
+              >
+                {cat.no}
+              </span>
+              <div>
+                <div
+                  className="font-bold uppercase leading-none text-[20px] lg:text-[26px]"
+                  style={{ letterSpacing: "-0.03em" }}
+                >
+                  {cat.name}
+                </div>
+                <div
+                  className="mt-1.5 font-medium"
+                  style={{ fontSize: 11, color: "rgba(255,255,255,0.55)" }}
+                >
+                  {cat.tag}
+                </div>
+                <div
+                  className="mt-2 h-px w-0 transition-all duration-500 ease-out group-hover:w-full"
+                  style={{ background: "#C1445A" }}
+                />
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {/* footer CTA */}
+      <div
+        className="mt-14 flex items-center justify-between border-t pt-7 lg:mt-20"
+        style={{ borderColor: "rgba(255,255,255,0.15)" }}
+      >
+        <span
+          className="font-medium uppercase"
+          style={{ fontSize: 11, letterSpacing: "0.12em", color: "rgba(255,255,255,0.45)" }}
+        >
+          CHICAP ® 2026
+        </span>
+        <a
+          href={SHOP_URL}
+          className="group inline-flex items-center gap-2 font-medium uppercase"
+          style={{ fontSize: 14, letterSpacing: "0.04em", color: "#fff", textDecoration: "none" }}
+        >
+          View full store
+          <span className="transition-transform duration-300 group-hover:translate-x-1">
+            &rarr;
+          </span>
+        </a>
+      </div>
+    </section>
+
+    {/* ================= MENU OVERLAY ================= */}
+    {menuOpen && (
+      <div className="fixed inset-0 z-[70] flex flex-col bg-black" style={{ color: "#fff" }}>
+        {/* top bar */}
+        <div className="flex items-center justify-between px-4 py-4 lg:px-8 lg:py-6">
+          <span
+            className="font-bold uppercase leading-none text-[22px] lg:text-[26px]"
+            style={{ letterSpacing: "-0.03em" }}
+          >
+            CHICAP<sup className="align-super text-[0.4em]">®</sup>
+          </span>
+          <button
+            type="button"
+            aria-label="Close menu"
+            onClick={() => setMenuOpen(false)}
+            className="cursor-pointer"
+          >
+            <svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+              <path
+                d="M7 7L33 33M33 7L7 33"
+                stroke="#fff"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* menu items */}
+        <nav className="flex flex-1 flex-col justify-center gap-4 overflow-y-auto py-4 px-4 lg:gap-5 lg:px-8">
+          {/* SHOP (accordion) */}
+          <div>
+            <button
+              type="button"
+              onClick={() => setOpenSection(openSection === "shop" ? null : "shop")}
+              className="flex w-full items-center gap-3 text-left font-bold uppercase leading-[0.95] text-white transition-colors text-[8vw] hover:text-[#C1445A] lg:text-[4.2vw]"
+              style={{ letterSpacing: "-0.04em" }}
+            >
+              Shop
+              <span
+                className="transition-transform duration-300"
+                style={{ fontSize: "0.3em", transform: openSection === "shop" ? "rotate(45deg)" : "none", color: "rgba(255,255,255,0.5)" }}
+              >
+                +
+              </span>
+            </button>
+            <div
+              style={{
+                maxHeight: openSection === "shop" ? 80 : 0,
+                opacity: openSection === "shop" ? 1 : 0,
+                overflow: "hidden",
+                transition: "max-height 0.4s ease, opacity 0.35s ease",
+              }}
+            >
+              <div className="mt-2 flex flex-wrap gap-x-6 gap-y-1 pl-1">
+                {["Cap", "Clothes"].map((s) => (
+                  <a
+                    key={s}
+                    href={SHOP_URL}
+                    className="font-medium uppercase transition-colors hover:text-[#C1445A]"
+                    style={{ fontSize: 14, letterSpacing: "0.04em", color: "rgba(255,255,255,0.55)", textDecoration: "none" }}
+                  >
+                    {s}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ABOUT */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen(false)}
+            className="text-left font-bold uppercase leading-[0.95] text-white transition-colors text-[8vw] hover:text-[#C1445A] lg:text-[4.2vw]"
+            style={{ letterSpacing: "-0.04em" }}
+          >
+            About
+          </button>
+
+          {/* CONTACT */}
+          <a
+            href="mailto:chiccaapp@gmail.com"
+            className="font-bold uppercase leading-[0.95] text-white transition-colors text-[8vw] hover:text-[#C1445A] lg:text-[4.2vw]"
+            style={{ letterSpacing: "-0.04em", textDecoration: "none" }}
+          >
+            Contact
+          </a>
+
+          {/* VIEW */}
+          <button
+            type="button"
+            onClick={() => {
+              setMenuOpen(false);
+              const s = document.getElementById("shop");
+              if (s) s.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="text-left font-bold uppercase leading-[0.95] text-white transition-colors text-[8vw] hover:text-[#C1445A] lg:text-[4.2vw]"
+            style={{ letterSpacing: "-0.04em" }}
+          >
+            View
+          </button>
+
+          {/* CUSTOMER CARE (accordion, bottom) */}
+          <div>
+            <button
+              type="button"
+              onClick={() => setOpenSection(openSection === "care" ? null : "care")}
+              className="flex w-full items-center gap-3 text-left font-bold uppercase leading-[0.95] text-white transition-colors text-[8vw] hover:text-[#C1445A] lg:text-[4.2vw]"
+              style={{ letterSpacing: "-0.04em" }}
+            >
+              Customer Care
+              <span
+                className="transition-transform duration-300"
+                style={{ fontSize: "0.3em", transform: openSection === "care" ? "rotate(45deg)" : "none", color: "rgba(255,255,255,0.5)" }}
+              >
+                +
+              </span>
+            </button>
+            <div
+              style={{
+                maxHeight: openSection === "care" ? 120 : 0,
+                opacity: openSection === "care" ? 1 : 0,
+                overflow: "hidden",
+                transition: "max-height 0.4s ease, opacity 0.35s ease",
+              }}
+            >
+              <div className="mt-2 flex flex-wrap gap-x-6 gap-y-1 pl-1">
+                {["공지사항", "상품 후기", "상품 Q&A", "이용안내 FAQ"].map((s) => (
+                  <a
+                    key={s}
+                    href={SHOP_URL}
+                    className="font-medium transition-colors hover:text-[#C1445A]"
+                    style={{ fontSize: 14, letterSpacing: "0.02em", color: "rgba(255,255,255,0.55)", textDecoration: "none" }}
+                  >
+                    {s}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        {/* footer */}
+        <div
+          className="flex items-center justify-between px-4 py-6 lg:px-8"
+          style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, letterSpacing: "0.1em" }}
+        >
+          <span className="uppercase">CHICAP ® 2026</span>
+          <span>store.sixshop.com/chicap</span>
+        </div>
+      </div>
+    )}
+    </>
   );
 }
