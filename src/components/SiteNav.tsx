@@ -144,13 +144,9 @@ export default function SiteNav() {
             </button>
 
             {/* CONTACT */}
-            <a
-              href="mailto:chiccaapp@gmail.com"
-              className="font-bold uppercase leading-[0.95] text-white transition-colors text-[8vw] hover:text-[var(--accent)] lg:text-[4.2vw]"
-              style={{ letterSpacing: "-0.04em", textDecoration: "none" }}
-            >
+            <button type="button" onClick={() => go("/contact")} className={bigItem} style={{ letterSpacing: "-0.04em" }}>
               Contact
-            </a>
+            </button>
 
             {/* VIEW */}
             <button type="button" onClick={() => go("/shop")} className={bigItem} style={{ letterSpacing: "-0.04em" }}>
