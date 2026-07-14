@@ -6,7 +6,7 @@ export default function About() {
     >
       <div className="mx-auto max-w-[900px]">
         {/* image at top — toned to match the moody theme */}
-        <div className="relative mb-12 overflow-hidden lg:mb-16" style={{ aspectRatio: "4 / 5" }}>
+        <div className="relative mx-auto mb-12 w-full max-w-[460px] overflow-hidden lg:mb-16" style={{ aspectRatio: "4 / 5" }}>
           <img
             src="/gallery/about-real.jpg"
             alt="CHICAP"
