@@ -1,11 +1,20 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
-import { SHOP_URL, EASE, ACCENT } from "../lib/data";
+import { SHOP_URL, STORE_CART, STORE_REVIEWS, EASE, ACCENT } from "../lib/data";
 
 const bigItem =
   "text-left font-bold uppercase leading-[0.95] text-white transition-colors text-[8vw] hover:text-[var(--accent)] lg:text-[4.2vw]";
 const subItem = "font-medium transition-colors hover:text-[var(--accent)]";
+
+// Only /reviews is public on the store yet; notice/Q&A/FAQ boards are not
+// published — fall back to the store home until they are set up.
+const CARE_LINKS = [
+  { label: "공지사항", href: SHOP_URL },
+  { label: "상품 후기", href: STORE_REVIEWS },
+  { label: "상품 Q&A", href: SHOP_URL },
+  { label: "이용안내 FAQ", href: SHOP_URL },
+];
 
 export default function SiteNav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -62,7 +71,7 @@ export default function SiteNav() {
           </svg>
         </button>
         <a
-          href={SHOP_URL}
+          href={STORE_CART}
           className="cursor-pointer font-medium text-[13px] lg:text-[15px]"
           style={{ color: "inherit", textDecoration: "none" }}
         >
@@ -178,9 +187,9 @@ export default function SiteNav() {
                 }}
               >
                 <div className="mt-2 flex flex-wrap gap-x-6 gap-y-1 pl-1">
-                  {["공지사항", "상품 후기", "상품 Q&A", "이용안내 FAQ"].map((s) => (
-                    <a key={s} href={SHOP_URL} className={subItem} style={{ fontSize: 14, letterSpacing: "0.02em", color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>
-                      {s}
+                  {CARE_LINKS.map((c) => (
+                    <a key={c.label} href={c.href} className={subItem} style={{ fontSize: 14, letterSpacing: "0.02em", color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>
+                      {c.label}
                     </a>
                   ))}
                 </div>
@@ -193,7 +202,7 @@ export default function SiteNav() {
             style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, letterSpacing: "0.1em" }}
           >
             <span className="uppercase">CHICAP ® 2026</span>
-            <span>store.sixshop.com/chicap</span>
+            <span>chicap.sixshop.site</span>
           </div>
         </div>
       )}

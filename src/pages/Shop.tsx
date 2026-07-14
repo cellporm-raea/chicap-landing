@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { SHOP_CATEGORIES, SHOP_URL, ACCENT } from "../lib/data";
+import { SHOP_CATEGORIES, STORE_SHOP, ACCENT } from "../lib/data";
 
 export default function Shop() {
   return (
@@ -81,7 +81,7 @@ export default function Shop() {
           CHICAP ® 2026
         </span>
         <a
-          href={SHOP_URL}
+          href={STORE_SHOP}
           className="group inline-flex items-center gap-2 font-medium uppercase"
           style={{ fontSize: 14, letterSpacing: "0.04em", color: "#fff", textDecoration: "none" }}
         >

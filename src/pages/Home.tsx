@@ -5,7 +5,7 @@ import {
   GALLERY,
   SYMBOLS,
   EASE,
-  SHOP_URL,
+  STORE_SHOP,
   buildLayout,
   colsForWidth,
 } from "../lib/data";
@@ -289,7 +289,7 @@ export default function Home() {
         }}
       >
         <a
-          href={SHOP_URL}
+          href={STORE_SHOP}
           className="pointer-events-auto flex h-full w-full cursor-pointer items-center justify-center font-medium leading-none text-[72px] lg:text-[110px]"
           style={{
             letterSpacing: "-0.04em",

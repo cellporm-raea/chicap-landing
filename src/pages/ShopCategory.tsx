@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { SHOP_URL, ACCENT } from "../lib/data";
+import { STORE_SHOP, ACCENT } from "../lib/data";
 
 type Props = { name: string; tag: string; image: string };
 
@@ -57,7 +57,7 @@ export default function ShopCategory({ name, tag, image }: Props) {
             collection and check out on our store.
           </p>
           <a
-            href={SHOP_URL}
+            href={STORE_SHOP}
             className="mt-8 inline-flex items-center gap-2 rounded-full px-8 py-4 font-medium uppercase transition-colors"
             style={{ background: ACCENT, color: "#0a0a0a", fontSize: 14, letterSpacing: "0.04em", textDecoration: "none" }}
           >

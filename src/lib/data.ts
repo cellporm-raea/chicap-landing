@@ -2,7 +2,10 @@
 /* Shared constants + helpers                                          */
 /* ------------------------------------------------------------------ */
 export const HERO_VIDEO = "/hero.mp4";
-export const SHOP_URL = "https://store.sixshop.com/chicap";
+export const SHOP_URL = "https://chicap.sixshop.site";
+export const STORE_SHOP = `${SHOP_URL}/products/all`;
+export const STORE_CART = `${SHOP_URL}/cart`;
+export const STORE_REVIEWS = `${SHOP_URL}/reviews`;
 export const ACCENT = "#0ABAB5"; // Tiffany blue — brand point color
 
 export const GALLERY = [
