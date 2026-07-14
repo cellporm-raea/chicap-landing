@@ -7,6 +7,7 @@ import Shop from "./pages/Shop";
 import ShopCategory from "./pages/ShopCategory";
 import Contact from "./pages/Contact";
 import ProductDetail from "./pages/ProductDetail";
+import View from "./pages/View";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/view" element={<View />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/product" element={<ProductDetail />} />
         <Route

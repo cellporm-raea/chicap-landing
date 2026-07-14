@@ -158,7 +158,7 @@ export default function SiteNav() {
             </button>
 
             {/* VIEW */}
-            <button type="button" onClick={() => go("/shop")} className={bigItem} style={{ letterSpacing: "-0.04em" }}>
+            <button type="button" onClick={() => go("/view")} className={bigItem} style={{ letterSpacing: "-0.04em" }}>
               View
             </button>
 
